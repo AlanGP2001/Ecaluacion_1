@@ -107,7 +107,6 @@ public class HomeController {
 		return "usuario/carrito";
 	}
 
-	/*
 	// quitar un producto del carrito
 	@GetMapping("/delete/cart/{id}")
 	public String deleteProductoCart(@PathVariable Integer id, Model model) {
@@ -134,6 +133,7 @@ public class HomeController {
 		return "usuario/carrito";
 	}
 	
+	/*
 	@GetMapping("/getCart")
 	public String getCart(Model model, HttpSession session) {
 		
