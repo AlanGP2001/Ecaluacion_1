@@ -93,21 +93,13 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public List<Producto> getProductos() {
 		return productos;
 	}
 
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
-	}
-
-	public List<Orden> getOrdenes() {
-		return ordenes;
-	}
-
-	public void setOrdenes(List<Orden> ordenes) {
-		this.ordenes = ordenes;
 	}
 
 	@Override

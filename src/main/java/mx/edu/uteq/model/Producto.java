@@ -23,8 +23,9 @@ public class Producto {
 	private Usuario usuario;
 	
 	public Producto() {
-	}
 
+	}
+	
 	public Producto(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad,
 			Usuario usuario) {
 		super();
@@ -84,7 +85,7 @@ public class Producto {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
