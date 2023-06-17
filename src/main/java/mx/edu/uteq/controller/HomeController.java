@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 import mx.edu.uteq.model.DetalleOrden;
 import mx.edu.uteq.model.Orden;
 import mx.edu.uteq.model.Producto;
+import mx.edu.uteq.model.Usuario;
+import mx.edu.uteq.service.IUsuarioService;
 import mx.edu.uteq.service.ProductoService;
 
 @Controller
@@ -29,10 +31,11 @@ public class HomeController {
 	
 	@Autowired
 	private ProductoService productoService;
-	/*
+	
 	@Autowired
 	private IUsuarioService usuarioService;
 	
+	/*
 	
 	@Autowired
 	private IOrdenService ordenService;
@@ -90,8 +93,8 @@ public class HomeController {
 		
 		
 		//validar que le producto no se añada 2 veces
-		Integer idProducto=producto.getId();
-		boolean ingresado=detalles.stream().anyMatch(p -> p.getProducto().getId()==idProducto);
+		Integer idProducto = producto.getId();
+		boolean ingresado = detalles.stream().anyMatch(p -> p.getProducto().getId()==idProducto);
 		
 		if (!ingresado) {
 			detalles.add(detalleOrden);
@@ -133,22 +136,23 @@ public class HomeController {
 		return "usuario/carrito";
 	}
 	
-	/*
 	@GetMapping("/getCart")
-	public String getCart(Model model, HttpSession session) {
+	public String getCart(Model model/*, HttpSession session*/) {
 		
 		model.addAttribute("cart", detalles);
 		model.addAttribute("orden", orden);
-		
+		/*
 		//sesion
 		model.addAttribute("sesion", session.getAttribute("idusuario"));
+		*/
 		return "/usuario/carrito";
 	}
 	
 	@GetMapping("/order")
-	public String order(Model model, HttpSession session) {
+	public String order(Model model/*, HttpSession session*/) {
 		
-		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		//Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		Usuario usuario =usuarioService.findById(1).get();
 		
 		model.addAttribute("cart", detalles);
 		model.addAttribute("orden", orden);
@@ -157,6 +161,7 @@ public class HomeController {
 		return "usuario/resumenorden";
 	}
 	
+	/*
 	// guardar la orden
 	@GetMapping("/saveOrder")
 	public String saveOrder(HttpSession session ) {
