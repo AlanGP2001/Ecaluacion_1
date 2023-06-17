@@ -100,11 +100,11 @@ public class ProductoController {
 		productoService.update(producto);
 		return "redirect:/productos";
 	}
-	/*
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		
+		/*
 		Producto p = new Producto();
 		p=productoService.get(id).get();
 		
@@ -112,8 +112,9 @@ public class ProductoController {
 		if (!p.getImagen().equals("default.jpg")) {
 			upload.deleteImage(p.getImagen());
 		}
+		 */
 		
 		productoService.delete(id);
 		return "redirect:/productos";
-	}*/
+	}
 }
