@@ -33,11 +33,10 @@
     Baratus <small>Productos</small>
   </h1>
 
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="@{/administrador/home}" style="color: #FFBD56;">Home</a></li>
-    <li class="breadcrumb-item active">Crear Productos</li>
+<ol class="breadcrumb" style="background-color: #3F4545;">
+    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+    <li class="breadcrumb-item active" style="color: white;">Crear Productos</li>
   </ol>
-
   <h2>Crear Producto</h2>
   <form class="form-horizontal" th:action="@{/productos/save}" method="post" enctype="multipart/form-data">
     <div class="form-group">
