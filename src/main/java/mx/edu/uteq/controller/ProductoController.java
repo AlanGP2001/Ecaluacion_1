@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.HttpSession;
 import mx.edu.uteq.model.Producto;
 import mx.edu.uteq.model.Usuario;
+import mx.edu.uteq.service.IUsuarioService;
 import mx.edu.uteq.service.ProductoService;
 import mx.edu.uteq.service.UploadFileService;
 
@@ -27,11 +29,9 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 	
-	/*
 	@Autowired
 	private IUsuarioService usuarioService;
 	
-	 */
 	@Autowired
 	private UploadFileService upload;
 	
@@ -47,17 +47,14 @@ public class ProductoController {
 	}
 	
 	@PostMapping("/save")
-	public String save(Producto producto, @RequestParam("img") MultipartFile file/*, HttpSession session*/) throws IOException {
+	public String save(Producto producto, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
+		
 		LOGGER.info("Este es el objeto producto {}",producto);
-		Usuario u = new Usuario(1, "", "", "", "", "", "", "");
+		
+		Usuario u = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString() )).get();
 		producto.setUsuario(u);	
 		
-		/*
-		Usuario u= usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString() )).get();
-		 */
-		
-		//imagen
-		if (producto.getId()==null) { // cuando se crea un producto
+		if (producto.getId()==null) {
 			String nombreImagen = upload.saveImage(file);
 			producto.setImagen(nombreImagen);
 		}else {
@@ -87,11 +84,8 @@ public class ProductoController {
 		p = productoService.get(producto.getId()).get();
 		
 		if (file.isEmpty()) {
-			// editamos el producto pero no cambiamos la imagem
 			producto.setImagen(p.getImagen());
 		} else {
-			// cuando se edita tambien la imagen			
-			//eliminar cuando no sea la imagen por defecto
 			if (!p.getImagen().equals("default.jpg")) {
 				upload.deleteImage(p.getImagen());
 			}
@@ -110,7 +104,6 @@ public class ProductoController {
 		Producto p = new Producto();
 		p = productoService.get(id).get();
 		
-		//eliminar cuando no sea la imagen por defecto
 		if (!p.getImagen().equals("default.jpg")) {
 			upload.deleteImage(p.getImagen());
 		}
