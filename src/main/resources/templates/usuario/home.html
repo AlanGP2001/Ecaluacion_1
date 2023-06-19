@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Spring eCommerce</title>
+<title>Primera evaluación</title>
 
 
 <!-- Bootstrap core CSS -->
@@ -18,6 +18,12 @@
 
 <!-- Custom styles for this template -->
 <link th:href="@{css/heroic-features.css}" rel="stylesheet">
+
+<style>
+	.custom-jumbotron {
+		background-color: #FFE13A; /* Cambia el color de fondo aquí */
+	}
+</style>
 
 </head>
 
@@ -33,9 +39,9 @@
 	<div class="container">
 
 		<!-- Jumbotron Header -->
-		<header class="jumbotron my-4">
-			<h1 class="display-3">Bienvenido a Spring Ecommerce 2021</h1>
-			<p class="lead">Tu tienda de productos en Línea</p>
+		<header class="jumbotron my-4 custom-jumbotron">
+			<h1 class="display-3">Bienvenido a Baratus</h1>
+			<p class="lead">Primera evaluación - Desarrollo web profesional</p>
 		</header>
 
 		<!-- Page Features -->
@@ -49,7 +55,7 @@
 						<p class="card-text" th:text="${producto.nombre}"></p>
 					</div>
 					<div class="card-footer">
-						<a th:href="@{/productohome/{id}  (id=${producto.id})  }" class="btn btn-success">Ver
+						<a th:href="@{/productohome/{id}  (id=${producto.id})  }" class="btn btn-primary">Ver
 							producto</a>
 					</div>
 				</div>
