@@ -143,7 +143,6 @@ public class HomeController {
 	public String order(Model model, HttpSession session) {
 		
 		Usuario usuario = usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
-		//Usuario usuario = usuarioService.findById(1).get();
 		
 		model.addAttribute("cart", detalles);
 		model.addAttribute("orden", orden);
@@ -159,7 +158,6 @@ public class HomeController {
 		orden.setNumero(ordenService.generarNumeroOrden());
 		
 		Usuario usuario = usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())  ).get();
-		//Usuario usuario = usuarioService.findById(1).get();
 		
 		orden.setUsuario(usuario);
 		ordenService.save(orden);
@@ -174,7 +172,6 @@ public class HomeController {
 		
 		return "redirect:/";
 	}
-	
 	
 	@PostMapping("/search")
 	public String searchProduct(@RequestParam String nombre, Model model) {

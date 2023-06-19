@@ -1,16 +1,21 @@
 package mx.edu.uteq.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
+import mx.edu.uteq.model.Orden;
 import mx.edu.uteq.model.Usuario;
+import mx.edu.uteq.service.IOrdenService;
 import mx.edu.uteq.service.IUsuarioService;
 
 
@@ -22,10 +27,11 @@ public class UsuarioController {
 	
 	@Autowired
 	private IUsuarioService usuarioService;
-	/*
+	
 	@Autowired
 	private IOrdenService ordenService;
 	
+	/*
 	BCryptPasswordEncoder passEncode= new BCryptPasswordEncoder();
 	*/
 	
@@ -53,7 +59,6 @@ public class UsuarioController {
 		logger.info("Accesos : {}", usuario);
 		
 		Optional<Usuario> user=usuarioService.findByEmail(usuario.getEmail());
-		//logger.info("Usuario de db: {}", user.get());
 		
 		if (user.isPresent()) {
 			session.setAttribute("idusuario", user.get().getId());
@@ -70,13 +75,12 @@ public class UsuarioController {
 		return "redirect:/";
 	}
 	
-	/*
 	@GetMapping("/compras")
 	public String obtenerCompras(Model model, HttpSession session) {
 		model.addAttribute("sesion", session.getAttribute("idusuario"));
 		
-		Usuario usuario= usuarioService.findById(  Integer.parseInt(session.getAttribute("idusuario").toString()) ).get();
-		List<Orden> ordenes= ordenService.findByUsuario(usuario);
+		Usuario usuario = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		List<Orden> ordenes = ordenService.findByUsuario(usuario);
 		logger.info("ordenes {}", ordenes);
 		
 		model.addAttribute("ordenes", ordenes);
@@ -90,10 +94,8 @@ public class UsuarioController {
 		Optional<Orden> orden=ordenService.findById(id);
 		
 		model.addAttribute("detalles", orden.get().getDetalle());
-		
-		
-		//session
 		model.addAttribute("sesion", session.getAttribute("idusuario"));
+		
 		return "usuario/detallecompra";
 	}
 	
@@ -102,6 +104,5 @@ public class UsuarioController {
 		session.removeAttribute("idusuario");
 		return "redirect:/";
 	}
-	*/
 	
 }
