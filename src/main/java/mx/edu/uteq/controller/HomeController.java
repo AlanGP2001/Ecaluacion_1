@@ -36,33 +36,36 @@ public class HomeController {
 	private final Logger log = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
-	private ProductoService productoService;
+	private ProductoService productoService;  // Inyecta el servicio ProductoService
 	
 	@Autowired
-	private IUsuarioService usuarioService;
-		
-	@Autowired
-	private IOrdenService ordenService;
+	private IUsuarioService usuarioService;  // Inyecta el servicio IUsuarioService
 	
 	@Autowired
-	private IDetalleOrdenService detalleOrdenService;
+	private IOrdenService ordenService;  // Inyecta el servicio IOrdenService
+	
+	@Autowired
+	private IDetalleOrdenService detalleOrdenService;  // Inyecta el servicio IDetalleOrdenService
 
-	List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
+	List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();  // Lista de detalles de la orden
 	
-	Orden orden = new Orden();
+	Orden orden = new Orden();  // Objeto Orden para almacenar los detalles y la información de la orden
 	
 	@GetMapping("")
 	public String home(Model model, HttpSession session) {
-		
+		// Maneja la ruta base "/"
+		// Obtiene el ID del usuario de la sesión y lo muestra en el registro
 		log.info("Sesion del usuario: {}", session.getAttribute("idusuario"));
 		model.addAttribute("productos", productoService.findAll());
 		model.addAttribute("sesion", session.getAttribute("idusuario"));
 		
-		return "usuario/home";
+		return "usuario/home";  // Devuelve la vista "usuario/home"
 	}
 	
 	@GetMapping("productohome/{id}")
 	public String productoHome(@PathVariable Integer id, Model model) {
+		// Maneja la ruta "/productohome/{id}"
+		// donde {id} es un parámetro variable en la URL
 		log.info("Id producto enviado como parámetro {}", id);
 		Producto producto = new Producto();
 		Optional<Producto> productoOptional = productoService.get(id);
@@ -70,11 +73,13 @@ public class HomeController {
 
 		model.addAttribute("producto", producto);
 		
-		return "usuario/productohome";
+		return "usuario/productohome";  // Devuelve la vista "usuario/productohome"
 	}
 
 	@PostMapping("/cart")
 	public String addCart(@RequestParam Integer id, @RequestParam Integer cantidad, Model model) {
+		// Maneja la solicitud POST en "/cart"
+		// Agrega un producto al carrito de compras
 		DetalleOrden detalleOrden = new DetalleOrden();
 		Producto producto = new Producto();
 		double sumaTotal = 1;
@@ -103,12 +108,12 @@ public class HomeController {
 		model.addAttribute("cart", detalles);
 		model.addAttribute("orden", orden);
 		
-		return "usuario/carrito";
+		return "usuario/carrito";  // Devuelve la vista "usuario/carrito"
 	}
 
 	@GetMapping("/delete/cart/{id}")
 	public String deleteProductoCart(@PathVariable Integer id, Model model) {
-
+		// Maneja la eliminación de un producto del carrito de compras
 		List<DetalleOrden> ordenesNueva = new ArrayList<DetalleOrden>();
 
 		for (DetalleOrden detalleOrden : detalles) {
@@ -126,38 +131,39 @@ public class HomeController {
 		model.addAttribute("cart", detalles);
 		model.addAttribute("orden", orden);
 
-		return "usuario/carrito";
+		return "usuario/carrito";  // Devuelve la vista "usuario/carrito"
 	}
 	
 	@GetMapping("/getCart")
 	public String getCart(Model model, HttpSession session) {
-		
+		// Obtiene el carrito de compras
 		model.addAttribute("cart", detalles);
 		model.addAttribute("orden", orden);
 		model.addAttribute("sesion", session.getAttribute("idusuario"));
 		
-		return "/usuario/carrito";
+		return "/usuario/carrito";  // Devuelve la vista "/usuario/carrito"
 	}
 	
 	@GetMapping("/order")
 	public String order(Model model, HttpSession session) {
-		
-		Usuario usuario = usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		// Procesa la orden de compra
+		Usuario usuario = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
 		
 		model.addAttribute("cart", detalles);
 		model.addAttribute("orden", orden);
 		model.addAttribute("usuario", usuario);
 		
-		return "usuario/resumenorden";
+		return "usuario/resumenorden";  // Devuelve la vista "usuario/resumenorden"
 	}
 	
 	@GetMapping("/saveOrder")
-	public String saveOrder(HttpSession session ) {
+	public String saveOrder(HttpSession session) {
+		// Guarda la orden de compra en la base de datos
 		Date fechaCreacion = new Date();
 		orden.setFechaCreacion(fechaCreacion);
 		orden.setNumero(ordenService.generarNumeroOrden());
 		
-		Usuario usuario = usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())  ).get();
+		Usuario usuario = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
 		
 		orden.setUsuario(usuario);
 		ordenService.save(orden);
@@ -170,14 +176,21 @@ public class HomeController {
 		orden = new Orden();
 		detalles.clear();
 		
-		return "redirect:/";
+		return "redirect:/";  // Redirige a la ruta base "/"
 	}
 	
 	@PostMapping("/search")
 	public String searchProduct(@RequestParam String nombre, Model model) {
+		// Busca productos por nombre
 		log.info("Nombre del producto: {}", nombre);
 		List<Producto> productos= productoService.findAll().stream().filter( p -> p.getNombre().contains(nombre)).collect(Collectors.toList());
 		model.addAttribute("productos", productos);		
-		return "usuario/home";
+		return "usuario/home";  // Devuelve la vista "usuario/home"
+	}
+
+	@GetMapping("/mapa")
+	public String mapasitio() {
+
+		return "usuario/mapa";// Devuelve la vista "usuario/mapa"
 	}
 }

@@ -27,27 +27,30 @@ public class ProductoController {
 	private final Logger LOGGER = LoggerFactory.getLogger(ProductoController.class);
 	
 	@Autowired
-	private ProductoService productoService;
+	private ProductoService productoService;  // Inyecta el servicio ProductoService
 	
 	@Autowired
-	private IUsuarioService usuarioService;
+	private IUsuarioService usuarioService;  // Inyecta el servicio IUsuarioService
 	
 	@Autowired
-	private UploadFileService upload;
+	private UploadFileService upload;  // Inyecta el servicio UploadFileService para manejar la subida de archivos
 	
 	@GetMapping("")
 	public String show(Model model) {
+		// Muestra todos los productos en la vista "productos/show"
 		model.addAttribute("productos", productoService.findAll());
 		return "productos/show";
 	}
 	
 	@GetMapping("/create")
 	public String create() {
+		// Muestra la vista "productos/create" para crear un nuevo producto
 		return "productos/create";
 	}
 	
 	@PostMapping("/save")
 	public String save(Producto producto, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
+		// Guarda un nuevo producto en la base de datos
 		
 		LOGGER.info("Este es el objeto producto {}",producto);
 		
@@ -55,18 +58,19 @@ public class ProductoController {
 		producto.setUsuario(u);	
 		
 		if (producto.getId()==null) {
-			String nombreImagen = upload.saveImage(file);
+			String nombreImagen = upload.saveImage(file);  // Guarda la imagen en el servidor
 			producto.setImagen(nombreImagen);
 		}else {
-			
+			// El producto ya tiene un ID, se podría manejar un caso específico si se desea
 		}
 		
-		productoService.save(producto);
-		return "redirect:/productos";
+		productoService.save(producto);  // Guarda el producto en la base de datos
+		return "redirect:/productos";  // Redirige a la página de visualización de productos
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
+		// Muestra la vista "productos/edit" para editar un producto existente
 		Producto producto = new Producto();
 		Optional<Producto> optionalProducto = productoService.get(id);
 		producto = optionalProducto.get();
@@ -79,35 +83,37 @@ public class ProductoController {
 	
 	@PostMapping("/update")
 	public String update(Producto producto, @RequestParam("img") MultipartFile file ) throws IOException {
+		// Actualiza un producto existente en la base de datos
 		
 		Producto p = new Producto();
 		p = productoService.get(producto.getId()).get();
 		
 		if (file.isEmpty()) {
-			producto.setImagen(p.getImagen());
+			producto.setImagen(p.getImagen());  // Conserva la imagen anterior si no se selecciona una nueva
 		} else {
 			if (!p.getImagen().equals("default.jpg")) {
-				upload.deleteImage(p.getImagen());
+				upload.deleteImage(p.getImagen());  // Elimina la imagen anterior si no es la imagen por defecto
 			}
-			String nombreImagen = upload.saveImage(file);
+			String nombreImagen = upload.saveImage(file);  // Guarda la nueva imagen en el servidor
 			producto.setImagen(nombreImagen);
 		}
-		producto.setUsuario(p.getUsuario());
-		 
-		productoService.update(producto);
-		return "redirect:/productos";
+		producto.setUsuario(p.getUsuario());  // Conserva el usuario asociado al producto
+		
+		productoService.update(producto);  // Actualiza el producto en la base de datos
+		return "redirect:/productos";  // Redirige a la página de visualización de productos
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
+		// Elimina un producto de la base de datos
 		
 		Producto p = new Producto();
 		p = productoService.get(id).get();
 		
 		if (!p.getImagen().equals("default.jpg")) {
-			upload.deleteImage(p.getImagen());
+			upload.deleteImage(p.getImagen());  // Elimina la imagen del servidor si no es la imagen por defecto
 		}
-		productoService.delete(id);
-		return "redirect:/productos";
+		productoService.delete(id);  // Elimina el producto de la base de datos
+		return "redirect:/productos";  // Redirige a la página de visualización de productos
 	}
 }
