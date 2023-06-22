@@ -22,6 +22,10 @@ public class Usuario {
 	private String telefono;
 	private String tipo;
 	private String password;
+	/*
+	private String preguntaSeguridad;
+	private String respuestaSeguridad;
+	*/
 	
 	@OneToMany(mappedBy = "usuario")
 	private List<Producto> productos;
@@ -33,7 +37,11 @@ public class Usuario {
 	}
 	
 	public Usuario(Integer id, String nombre, String username, String email, String direccion, String telefono,
-			String tipo, String password) {
+			String tipo, String password
+			/*
+			, String preguntaSeguridad,  String respuestaSeguridad
+			*/
+			) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -43,6 +51,10 @@ public class Usuario {
 		this.telefono = telefono;
 		this.tipo = tipo;
 		this.password = password;
+		/*
+		this.preguntaSeguridad = preguntaSeguridad;
+		this.respuestaSeguridad = respuestaSeguridad;
+		*/
 	}
 	
 	public Integer getId() {
@@ -93,6 +105,20 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	/*
+	public String getPreguntaSeguridad() {
+		return preguntaSeguridad;
+	}
+	public void setPreguntaSeguridad(String preguntaSeguridad) {
+		this.preguntaSeguridad = preguntaSeguridad;
+	}
+	public String getRespuestaSeguridad() {
+		return respuestaSeguridad;
+	}
+	public void setRespuestaSeguridad(String respuestaSeguridad) {
+		this.respuestaSeguridad = respuestaSeguridad;
+	}
+	*/
 	
 	public List<Producto> getProductos() {
 		return productos;

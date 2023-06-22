@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import mx.edu.uteq.model.Orden;
@@ -114,4 +115,38 @@ public class UsuarioController {
 		session.removeAttribute("idusuario");
 		return "redirect:/";  // Redirige a la página principal
 	}
+	
+	@GetMapping("/recuperacion_contrasena")
+	  public String mostrarFormularioRecuperacionContrasena() {
+	    return "usuario/recuperacion_contrasena";
+	  }
+	
+	@GetMapping("/recuperar-contrasena/{token}")
+	  public String mostrarRecuperacionContrasena(@PathVariable("token") String token, Model model) {
+	    // Verifica si el token es válido y si pertenece a un usuario existente
+	    // ...
+
+	    // Pasa el token a la página de recuperación de contraseña
+	    model.addAttribute("token", token);
+
+	    return "usuario/recuperacion_contrasena";
+	}
+	
+	 @PostMapping("/reset-contrasena")
+	  public String resetContrasena(@RequestParam("token") String token, @RequestParam("password") String password, @RequestParam("confirmPassword") String confirmPassword) {
+	    // Verifica si el token es válido y si pertenece a un usuario existente
+	    // ...
+
+	    // Verifica si las contraseñas coinciden
+	    if (!password.equals(confirmPassword)) {
+	      // Manejar el caso cuando las contraseñas no coinciden
+	      // ...
+	    }
+
+	    // Actualiza la contraseña del usuario
+	    // ...
+
+	    return "redirect:/usuario/login?contrasenaCambiada";
+	  }
+	  
 }

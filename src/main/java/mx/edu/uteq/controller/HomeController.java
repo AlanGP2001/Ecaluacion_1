@@ -188,9 +188,8 @@ public class HomeController {
 		return "usuario/home";  // Devuelve la vista "usuario/home"
 	}
 
-	@GetMapping("/mapa")
+	@GetMapping("/mapas")
 	public String mapasitio() {
-
 		return "usuario/mapa";// Devuelve la vista "usuario/mapa"
 	}
 }
