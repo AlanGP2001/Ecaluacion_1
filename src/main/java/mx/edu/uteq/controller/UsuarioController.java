@@ -64,7 +64,7 @@ public class UsuarioController {
 		logger.info("Accesos : {}", usuario);
 		
 		Optional<Usuario> user=usuarioService.findByEmail(usuario.getEmail());
-		
+		logger.info("Usuario por email: {}", user);
 		if (user.isPresent()) {
 			session.setAttribute("idusuario", user.get().getId());
 			
@@ -119,34 +119,23 @@ public class UsuarioController {
 	@GetMapping("/recuperacion_contrasena")
 	  public String mostrarFormularioRecuperacionContrasena() {
 	    return "usuario/recuperacion_contrasena";
-	  }
-	
-	@GetMapping("/recuperar-contrasena/{token}")
-	  public String mostrarRecuperacionContrasena(@PathVariable("token") String token, Model model) {
-	    // Verifica si el token es válido y si pertenece a un usuario existente
-	    // ...
-
-	    // Pasa el token a la página de recuperación de contraseña
-	    model.addAttribute("token", token);
-
-	    return "usuario/recuperacion_contrasena";
 	}
-	
-	 @PostMapping("/reset-contrasena")
-	  public String resetContrasena(@RequestParam("token") String token, @RequestParam("password") String password, @RequestParam("confirmPassword") String confirmPassword) {
-	    // Verifica si el token es válido y si pertenece a un usuario existente
-	    // ...
 
-	    // Verifica si las contraseñas coinciden
-	    if (!password.equals(confirmPassword)) {
-	      // Manejar el caso cuando las contraseñas no coinciden
-	      // ...
-	    }
+	@PostMapping("/validarEmail")
+	public String validarCoreos(Model model, Usuario usuario) {
+		logger.info("Accesos : {}", usuario);
+		Optional<Usuario> user = usuarioService.findByEmail(usuario.getEmail());
+		logger.info("Accesos : {}", user);
+		usuario = user.get();
+		model.addAttribute("usuario", usuario);
+		return "usuario/nueva_contrasena";
+	}
 
-	    // Actualiza la contraseña del usuario
-	    // ...
-
-	    return "redirect:/usuario/login?contrasenaCambiada";
-	  }
+	@PostMapping("/cambiarContrasena")
+	public String cambiarContrasena(Model model, Usuario usuario) {
+		logger.info("Accesos : {}", usuario);
+		usuarioService.save(usuario);
+		return "usuario/login";
+	}
 	  
 }

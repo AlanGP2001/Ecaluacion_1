@@ -32,7 +32,7 @@
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			Baratus <small>Producto</small>
+			Baratus <small>Detalle <a href="#" class="card-link" data-toggle="modal" data-target="#modalRecuperarContrasena">*</a></small>
 		</h1>
 
 		<ol class="breadcrumb" style="background-color: #3F4545;">>
@@ -78,6 +78,23 @@
 
 	</div>
 	<!-- /.container -->
+	<div id="modalRecuperarContrasena" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalRecuperarContrasenaLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="modalRecuperarContrasenaLabel">Ayuda Dashboard</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+				<a href="#"> 
+					<img class="img-fluid rounded" src="../../../../../images/css/detalleproyecto.jpg" alt="" width="800px" height="auto">
+				</a>
+			</div>
+		  </div>
+		</div>
+	  </div>
 
 	<!-- Footer -->
 	<div th:include="usuario/template_usuario.html::footer">

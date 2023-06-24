@@ -40,7 +40,10 @@
 
 		<!-- Jumbotron Header -->
 		<header class="jumbotron my-4 custom-jumbotron">
-			<h1 class="display-3">Bienvenido a Baratus</h1>
+			<div class="form-group">
+				<h1 class="display-3">Bienvenido a Baratus <a href="#" class="card-link" data-toggle="modal" data-target="#modalRecuperarContrasena">*</a></h1>
+				
+			</div>			  
 			<p class="lead">Primera evaluación - Desarrollo web profesional</p>
 		</header>
 
@@ -65,7 +68,27 @@
 		<!-- /.row -->
 
 	</div>
+
 	<!-- /.container -->
+
+	<div id="modalRecuperarContrasena" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalRecuperarContrasenaLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="modalRecuperarContrasenaLabel">Ayuda Dashboard</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+				<a href="#"> 
+					<img class="img-fluid rounded" src="../../../../../images/css/dashboard.jpg" alt="" width="800px" height="auto">
+				</a>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
 
 	<!-- Footer -->
 	<div th:include="usuario/template_usuario.html::footer">

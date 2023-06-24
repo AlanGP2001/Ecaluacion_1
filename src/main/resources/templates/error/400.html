@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Error 400 - Bad request</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
+
+    <style>
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <div th:include="usuario/template_usuario.html::header"></div>
+
+    <div class="form-group" style="height: 200px"></div>
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3 text-center">Error 400<small> Parece  que hubo un error en la solicitud, inténtalo de nuevo</small></h1>
+    </div>
+    <!-- /.container -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

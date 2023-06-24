@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Mapa de sitio</title>
+
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/heroic-features.css}" rel="stylesheet">
+
+
+	<style type="text/css">
+		h1 {
+			text-align: center;
+		}
+
+		#inbox {
+			border: 1px solid #ccc;
+			padding: 10px;
+			margin-bottom: 20px;
+		}
+
+		.message {
+			border: 1px solid #ccc;
+			padding: 10px;
+			margin-bottom: 10px;
+		}
+
+		.message header {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.message header span {
+			font-weight: bold;
+		}
+
+		#messageForm {
+			margin-top: 20px;
+		}
+
+		#messageForm label,
+		#messageForm input,
+		#messageForm textarea {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		.large-input {
+			width: 1100px;
+			padding: 10px;
+			font-size: 16px;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<div th:include="usuario/template_usuario.html::header"></div>
+
+	<!-- Page Content -->
+	<div class="container">
+
+
+		<!-- Page Heading/Breadcrumbs -->
+		<h1 class="mt-4 mb-3">
+			Baratus <small>Buzon</small>
+		</h1>
+
+		<ol class="breadcrumb" style="background-color: #3F4545;">>
+			<li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+			<li class="breadcrumb-item active" style="color: white;">Buzon</li>
+		</ol>
+
+		<!-- Blog Post -->
+		<form id="messageForm">
+			<label for="sender">Remitente:</label>
+			<input type="text" id="sender" name="sender" class="large-input" required>
+
+			<label for="subject">Asunto:</label>
+			<input type="text" id="subject" name="subject" class="large-input" required>
+
+			<label for="message">Mensaje:</label>
+			<textarea id="message" name="message" class="large-input" required></textarea>
+
+			<button type="submit">Enviar</button>
+		</form>
+
+
+	</div>
+	<!-- /.container -->
+	<div class="form-group" style="height: 10px;">
+	</div>
+
+	<!-- Footer -->
+	<div th:include="usuario/template_usuario.html::footer">
+	</div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

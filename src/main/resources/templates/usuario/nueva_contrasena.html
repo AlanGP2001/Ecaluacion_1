@@ -58,32 +58,21 @@
       </div>
     </div>
 
-    <form th:action="@{/usuario/validarEmail}" method="post" >
-	    <div>
+    <form th:action="@{/usuario/cambiarContrasena}" method="post">
+	    <div>   
+          <input type="hidden" class="form-control" th:field="${usuario.id}" id="id" name="id" >
+          <input type="hidden" class="form-control" th:field="${usuario.nombre}" id="nombre" name="nombre" >
+          <input type="hidden" class="form-control" th:field="${usuario.username}" id="username" name="username" >
+          <input type="hidden" class="form-control" th:field="${usuario.email}" id="email" name="email" >
+          <input type="hidden" class="form-control" th:field="${usuario.direccion}" id="direccion" name="direccion" >
+          <input type="hidden" class="form-control" th:field="${usuario.telefono}" id="telefono" name="telefono" >
+          <input type="hidden" class="form-control" th:field="${usuario.tipo}" id="tipo" name="tipo" >
+          <input type="hidden" class="form-control" th:field="${usuario.pregunta}" id="tipo" name="tipo" >
+          <input type="hidden" class="form-control" th:field="${usuario.respuesta}" id="tipo" name="tipo" >
 
         <div class="form-group">
-          <label for="email"> Email:  </label>      
-          <input type="email" class="form-control"  id="email" name="email" placeholder="Ingrese su email" required autocomplete="off"> 
-        </div>
-        <div class="form-group">
-          <label for="pregunta"> Preguntas:  </label>
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Selecciona tu Pregunta:</option>
-            <option value="1">¿Cuál es el nombre de tu mascota?</option>
-            <option value="2">¿Cuál fue tu primer trabajo?</option>
-            <option value="3">¿Cuál es el nombre de soltera de tu madre?</option>
-            <option value="4">¿Cuál es tu película favorita?</option>
-            <option value="5">¿En qué ciudad naciste?</option>
-            <option value="6">¿Cuál es tu color favorito?</option>
-            <option value="7">¿Cuál es el nombre de tu mejor amigo/a de la infancia?</option>
-            <option value="8">¿Cuál es el nombre de tu abuelo/a?</option>
-            <option value="9">¿Cuál es tu canción favorita?</option>
-            <option value="10">¿Cuál fue el nombre de tu escuela primaria?</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="respuesta"> Respuesta:  </label>      
-          <input type="text" class="form-control"  id="respuesta" name="respuesta" placeholder="Ingrese su Respuesta" required autocomplete="off"> 
+          <label for="pwd"> Contraseña:  </label>      
+          <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese tu nueva contraseña" required autocomplete="off"> 
         </div>
 	    </div>
       <div class="form-group">
@@ -93,7 +82,7 @@
       </div> 
   	</form>
   	
-  	<div class="form-group" style="height: 50px;">
+  	<div class="form-group" style="height: 185px;">
 	  </div>
     
   </div>

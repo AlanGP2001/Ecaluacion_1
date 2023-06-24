@@ -9,5 +9,6 @@ public interface IUsuarioService {
 	List<Usuario> findAll();
 	Optional<Usuario> findById(Integer id);
 	Usuario save (Usuario usuario);
+	//Usuario findByCorreo(String email);
 	Optional<Usuario> findByEmail(String email);
 }

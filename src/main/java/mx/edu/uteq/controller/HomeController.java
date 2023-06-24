@@ -192,4 +192,9 @@ public class HomeController {
 	public String mapasitio() {
 		return "usuario/mapa";// Devuelve la vista "usuario/mapa"
 	}
+
+	@GetMapping("/buzon")
+	public String buzon() {
+		return "usuario/buzon";// Devuelve la vista "usuario/mapa"
+	}
 }

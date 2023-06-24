@@ -3,21 +3,19 @@
 
 <head>
 
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-<title>Registro</title>
+	<title>Registro</title>
 
 
-<!-- Bootstrap core CSS -->
-<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
-	rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link th:href="@{/css/heroic-features.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/heroic-features.css}" rel="stylesheet">
 
 </head>
 
@@ -29,9 +27,8 @@
 			<a class="navbar-brand" th:href="@{/}">Baratus</a>
 
 
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -60,27 +57,46 @@
 		</div>
 		<form th:action="@{/usuario/save}" method="post">
 			<div class="form-group">
-				<label for="nombres">Nombres:</label> <input type="text"
-					class="form-control" id="nombre" name="nombre" required
-					placeholder="Ingrese sus nombres" autocomplete="off">
+				<label for="nombres">Nombres*:</label> <input type="text" class="form-control" id="nombre" name="nombre"
+					required placeholder="Ingrese sus nombres" autocomplete="off">
 			</div>
 
 			<div class="form-group">
-				<label for="email">Email:</label> <input type="email"
-					class="form-control" id="email" name="email" required
-					placeholder="Ingrese su email" autocomplete="off">
+				<label for="email">Email*:</label> <input type="email" class="form-control" id="email" name="email"
+					required placeholder="Ingrese su email" autocomplete="off">
 			</div>
 
 			<div class="form-group">
-				<label for="direccion">Dirección:</label> <input type="text"
-					class="form-control" id="direccion" name="direccion" required
-					placeholder="Ingrese su dirección" autocomplete="off">
+				<label for="direccion">Dirección*:</label> <input type="text" class="form-control" id="direccion"
+					name="direccion" required placeholder="Ingrese su dirección" autocomplete="off">
 			</div>
 
 			<div class="form-group">
-				<label for="pwd">Contraseña</label> <input type="password"
-					class="form-control" id="password" name="password" required
-					placeholder="Ingrese su contraseña" autocomplete="off">
+				<label for="pregunta"> Preguntas*: </label>
+				<select class="form-select" aria-label="Default select example">
+					<option selected>Selecciona tu Pregunta:</option>
+					<option value="1">¿Cuál es el nombre de tu mascota?</option>
+					<option value="2">¿Cuál fue tu primer trabajo?</option>
+					<option value="3">¿Cuál es el nombre de soltera de tu madre?</option>
+					<option value="4">¿Cuál es tu película favorita?</option>
+					<option value="5">¿En qué ciudad naciste?</option>
+					<option value="6">¿Cuál es tu color favorito?</option>
+					<option value="7">¿Cuál es el nombre de tu mejor amigo/a de la infancia?</option>
+					<option value="8">¿Cuál es el nombre de tu abuelo/a?</option>
+					<option value="9">¿Cuál es tu canción favorita?</option>
+					<option value="10">¿Cuál fue el nombre de tu escuela primaria?</option>
+				</select>
+			</div>
+			<input type="hidden" class="form-control" id="pregunta" name="pregunta" value="¿Cuál es tu color favorito?">
+			<div class="form-group">
+				<label for="respuesta"> Respuesta*: </label>
+				<input type="text" class="form-control" id="respuesta" name="respuesta"
+					placeholder="Ingrese su Respuesta" required autocomplete="off">
+			</div>
+
+			<div class="form-group">
+				<label for="pwd">Contraseña*:</label> <input type="password" class="form-control" id="password"
+					name="password" required placeholder="Ingrese su contraseña" autocomplete="off">
 			</div>
 			<div class="col-sm-2">
 				<button type="submit" class="btn btn-primary">Guardar</button>

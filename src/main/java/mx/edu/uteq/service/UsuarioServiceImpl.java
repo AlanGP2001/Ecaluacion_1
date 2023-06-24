@@ -34,4 +34,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		return usuarioRepository.findAll();
 	}
 
+	/*
+	@Override
+	public Usuario findByCorreo(String email) {
+		Usuario users = usuarioRepository.findByCorreo(email);
+		System.out.println("Usuariosservice"+ users);
+		return users;
+	}
+	*/
+
 }

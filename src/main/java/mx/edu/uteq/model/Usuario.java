@@ -22,26 +22,24 @@ public class Usuario {
 	private String telefono;
 	private String tipo;
 	private String password;
-	/*
-	private String preguntaSeguridad;
-	private String respuestaSeguridad;
-	*/
-	
+	private String pregunta;
+	private String respuesta;
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Producto> productos;
-	
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Orden> ordenes;
-	
+
 	public Usuario() {
 	}
-	
+
 	public Usuario(Integer id, String nombre, String username, String email, String direccion, String telefono,
 			String tipo, String password
-			/*
-			, String preguntaSeguridad,  String respuestaSeguridad
-			*/
-			) {
+
+			, String pregunta, String respuesta
+
+	) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -51,75 +49,91 @@ public class Usuario {
 		this.telefono = telefono;
 		this.tipo = tipo;
 		this.password = password;
-		/*
-		this.preguntaSeguridad = preguntaSeguridad;
-		this.respuestaSeguridad = respuestaSeguridad;
-		*/
+		this.pregunta = pregunta;
+		this.respuesta = respuesta;
+
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getDireccion() {
 		return direccion;
 	}
+
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+
 	public String getTelefono() {
 		return telefono;
 	}
+
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+
 	public String getTipo() {
 		return tipo;
 	}
+
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	/*
-	public String getPreguntaSeguridad() {
-		return preguntaSeguridad;
+
+	public String getpregunta() {
+		return pregunta;
 	}
-	public void setPreguntaSeguridad(String preguntaSeguridad) {
-		this.preguntaSeguridad = preguntaSeguridad;
+
+	public void setpregunta(String pregunta) {
+		this.pregunta = pregunta;
 	}
-	public String getRespuestaSeguridad() {
-		return respuestaSeguridad;
+
+	public String getrespuesta() {
+		return respuesta;
 	}
-	public void setRespuestaSeguridad(String respuestaSeguridad) {
-		this.respuestaSeguridad = respuestaSeguridad;
+
+	public void setrespuesta(String respuesta) {
+		this.respuesta = respuesta;
 	}
-	*/
-	
+
 	public List<Producto> getProductos() {
 		return productos;
 	}
@@ -132,7 +146,10 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", username=" + username + ", email=" + email
 				+ ", direccion=" + direccion + ", telefono=" + telefono + ", tipo=" + tipo + ", password=" + password
-				+ "]";
+				+ ", pregunta=" + pregunta + ", respuesta=" + respuesta + ", productos=" + productos + ", ordenes="
+				+ ordenes + "]";
 	}
+
 	
+
 }
